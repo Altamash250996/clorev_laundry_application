@@ -6,7 +6,6 @@ import 'dart:ui';
 import 'package:clover_application/screens/service_provider_bookings.dart';
 import 'package:clover_application/widgets/camera_access.dart';
 import 'package:clover_application/widgets/geo_location/geo_location_screen.dart';
-import 'package:clover_application/widgets/geo_location/location_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -732,10 +731,6 @@ class _ServiceProviderLoginState extends State<ServiceProviderLogin> {
                           child: Text('Submit'),
                         ),
                       ),
-                      /* SizedBox(
-                        height: 20,
-                      ),
-                      LocationInput(), */
                     ],
                   ),
                 ),
