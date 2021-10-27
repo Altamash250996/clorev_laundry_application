@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "573679545167",
+    "project_id": "hopeful-market-289310",
+    "storage_bucket": "hopeful-market-289310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573679545167:android:9f4bf3b7c587db90d9733a",
+        "android_client_info": {
+          "package_name": "com.example.clover_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573679545167-t9sqruekodnp588jvuqfg194mn6nr3rn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clover_application",
+            "certificate_hash": "4993171a152d85a14d9783accbe165cbf33171e8"
+          }
+        },
+        {
+          "client_id": "573679545167-c4g3o7qvvtnkq9ij2eef3i1q69tbpfel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7PFdBBhJRd0YSJz3BPnWSmRgiOlMAEc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573679545167-c4g3o7qvvtnkq9ij2eef3i1q69tbpfel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-import 'package:clover_application/screens/home_page.dart';
+import 'package:clover_application/screens/home_page_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => MyHomePage(),
+        builder: (context) => HomePageScreen(),
       ),
     );
   }
