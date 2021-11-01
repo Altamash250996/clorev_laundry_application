@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'bottom_navigation_bar.dart';
+
 class ServiceProviderLogin extends StatefulWidget {
   @override
   State<ServiceProviderLogin> createState() => _ServiceProviderLoginState();
@@ -183,7 +185,12 @@ class _ServiceProviderLoginState extends State<ServiceProviderLogin> {
                       child: ElevatedButton.icon(
                         icon: Icon(Icons.login),
                         onPressed: () {
-                          print('Click me');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyBottomNavBar(),
+                            ),
+                          );
                         },
                         label: Text(
                           'Login',
