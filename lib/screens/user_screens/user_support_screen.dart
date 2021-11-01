@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 
@@ -19,11 +19,12 @@ class UserSupportScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
+                height: 140,
                 color: Colors.blue[900],
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -100,9 +101,9 @@ class UserSupportScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
                   ],
                 ),
               ),

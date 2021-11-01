@@ -13,9 +13,9 @@ class NotificationPage extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Center(
-              child: Text('Notification'),
-            ),
+            // title: Center(
+            //   child: Text('Notification'),
+            // ),
             automaticallyImplyLeading: false,
             bottom: TabBar(
               //indicatorColor: Colors.white,

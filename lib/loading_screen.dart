@@ -17,7 +17,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {});
+    await Future.delayed(Duration(milliseconds: 7370), () {});
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -28,34 +28,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                Text(
-                  "CLOREV",
-                  style: TextStyle(
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                Text(
-                  "Laundry",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10.0,
-                    letterSpacing: 6.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/starting_page.gif'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
       ),
     );
   }

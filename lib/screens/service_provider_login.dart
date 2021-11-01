@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'bottom_navigation_bar.dart';
+import 'user_screens/user_bottom_navigation_bar.dart';
 
 class ServiceProviderLogin extends StatefulWidget {
   @override
@@ -188,7 +189,7 @@ class _ServiceProviderLoginState extends State<ServiceProviderLogin> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyBottomNavBar(),
+                              builder: (context) => UserBottomNavBar(),
                             ),
                           );
                         },
