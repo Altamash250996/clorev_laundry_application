@@ -10,14 +10,13 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
-  @override
   void initState() {
     super.initState();
     _navigatetohome();
   }
 
   _navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 7370), () {});
+    await Future.delayed(Duration(milliseconds: 7200), () {});
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -32,12 +31,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/starting_page.gif'),
-          fit: BoxFit.cover,
+          image: AssetImage('assets/images/starting_screen.gif'),
+          fit: BoxFit.fill,
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
       ),
     );
   }
