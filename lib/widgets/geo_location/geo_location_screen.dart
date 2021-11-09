@@ -6,6 +6,7 @@ import 'package:clover_application/blocs/application_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:geocoding/geocoding.dart';
@@ -19,6 +20,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
   List<Marker> myMarker = [];
   GoogleMapController mapController;
   String searchAddr;
+  var txt = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +72,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
                           color: Colors.white,
                         ),
                         child: TextField(
+                          controller: txt,
                           decoration: InputDecoration(
                             hintText: 'Enter Address',
                             border: InputBorder.none,
@@ -125,16 +128,29 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
   }
 
   _handleTap(LatLng tappedPoint) {
-    print(tappedPoint);
+    print("On Tap: ${tappedPoint}");
+    getUserLocation(LatLng tappedPoint) async {
+      final coordinates =
+          new Coordinates(tappedPoint.latitude, tappedPoint.longitude);
+      var addresses =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      print("Address: ${addresses.first.addressLine}");
+      setState(() {
+        txt.text = addresses.first.addressLine;
+      });
+    }
+
     setState(() {
+      getUserLocation(tappedPoint);
       myMarker = [];
       myMarker.add(
         Marker(
           markerId: MarkerId(tappedPoint.toString()),
           position: tappedPoint,
           draggable: true,
-          onDragEnd: (dragEndPosition) {
-            print(dragEndPosition);
+          onDragEnd: (dragEndPosition) async {
+            print("On Drag: ${dragEndPosition}");
+            getUserLocation(dragEndPosition);
           },
         ),
       );

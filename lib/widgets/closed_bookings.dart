@@ -22,10 +22,7 @@ class ClosedBookingsList extends StatelessWidget {
     ClosedBookings(
       id: 'CRB200915103',
       serviceoffered: ['Laundry', 'Dry-Cleaning'],
-      servicedates: [
-        DateTime.now(),
-        DateTime.now(),
-      ],
+      servicedates: [DateTime.now(), DateTime.now()],
       bookingdate: DateTime.now(),
       totalamount: 0000,
     ),

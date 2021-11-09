@@ -20,11 +20,12 @@ class MySupport extends StatelessWidget {
           child: Column(
             children: [
               Container(
+                height: 140,
                 color: Colors.blue[900],
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -101,9 +102,9 @@ class MySupport extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
                   ],
                 ),
               ),
@@ -122,310 +123,520 @@ class MySupport extends StatelessWidget {
                   elevation: 8,
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.chat,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Chat with Us',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Average response time 10-15 min',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
+                      // Chat with Us
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
                                 ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
+                                child: Icon(
+                                  Icons.chat,
                                   color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                                  size: 50.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Chat with Us',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Average response time 10-15 min',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //Request call back
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Icon(
+                                  Icons.phone_callback_sharp,
+                                  color: Colors.blue,
+                                  size: 50.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Request Call-back',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Available b/w 09:00AM - 09:00PM',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //FAQ
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Icon(
+                                  Icons.question_answer_sharp,
+                                  color: Colors.blue,
+                                  size: 50.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'FAQs',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Get your frequent query resolved here',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //Blogs
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Icon(
+                                  Icons.app_blocking_outlined,
+                                  color: Colors.blue,
+                                  size: 50.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Blogs',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Interesting Facts & Washing Instruction',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //About Us
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Icon(
+                                  Icons.info_outline,
+                                  size: 50,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'About Us',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //Terms of Services
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Icon(
+                                  Icons.note_add_outlined,
+                                  size: 50,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Terms of Service',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //Privacy Policy
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: 8.0,
+                          bottom: 0.0,
+                        ),
+                        child: InkWell(
+                          onTap: () {},
+                          focusColor: Colors.white70,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Icon(
+                                  Icons.policy_outlined,
+                                  size: 50,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.blue,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Privacy Policy',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       Divider(
                         color: Colors.blue,
-                        height: 3,
                         thickness: 1,
                       ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.playlist_add_check_sharp,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'FAQs',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Available b/w 09:00AM - 09:00PM',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                      Center(
+                        child: Text('Application Version v1.0.5'),
                       ),
-                      Divider(
-                        color: Colors.blue,
-                        height: 3,
-                        thickness: 1,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.question_answer_sharp,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'FAQs',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Get your frequent query resolved here',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.blue,
-                        height: 3,
-                        thickness: 1,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.app_blocking_outlined,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Blogs',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Interesting Facts & Washing Instructions',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.blue,
-                        height: 3,
-                        thickness: 1,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.note_add_outlined,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Terms of Service',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.blue,
-                        height: 3,
-                        thickness: 1,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.info_outline,
-                            size: 50,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'About Us',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.blue,
-                        height: 3,
-                        thickness: 1,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.policy_outlined,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Privacy Policy',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_right,
-                                  size: 30,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                      SizedBox(
+                        height: 20,
+                      )
                     ],
                   ),
                 ),

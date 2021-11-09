@@ -189,7 +189,7 @@ class _ServiceProviderLoginState extends State<ServiceProviderLogin> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => UserBottomNavBar(),
+                              builder: (context) => MyBottomNavBar(),
                             ),
                           );
                         },

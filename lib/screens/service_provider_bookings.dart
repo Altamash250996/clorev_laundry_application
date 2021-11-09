@@ -13,7 +13,11 @@ class ServiceProviderBookings extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Center(child: Text('Service Provider Bookings')),
+            title: Center(
+              child: Text(
+                'Service Provider Bookings',
+              ),
+            ),
             automaticallyImplyLeading: false,
             bottom: TabBar(
               //indicatorColor: Colors.white,
