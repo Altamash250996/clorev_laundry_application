@@ -1,7 +1,7 @@
-import 'package:clover_application/screens/notification.dart';
-import 'package:clover_application/screens/profile_page.dart';
-import 'package:clover_application/screens/service_provider_bookings.dart';
-import 'package:clover_application/screens/support.dart';
+import 'package:clover_application/screens/service_provider_screens/notification.dart';
+import 'package:clover_application/screens/service_provider_screens/profile_page.dart';
+import 'package:clover_application/screens/service_provider_screens/service_provider_bookings.dart';
+import 'package:clover_application/screens/service_provider_screens/support.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavBar extends StatefulWidget {

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:clover_application/screens/support.dart';
+import 'package:clover_application/screens/service_provider_screens/support.dart';
 import 'package:flutter/material.dart';
 
 class BankDetails extends StatelessWidget {

@@ -18,9 +18,9 @@ class GeoLocationScreen extends StatefulWidget {
 
 class _GeoLocationScreenState extends State<GeoLocationScreen> {
   List<Marker> myMarker = [];
-  GoogleMapController mapController;
-  String searchAddr;
-  var txt = TextEditingController();
+  GoogleMapController _mapController;
+  String _searchAddr;
+  var _txt = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
                       height: 300,
                       child: GoogleMap(
                         onMapCreated: onMapCreated,
-                        mapType: MapType.normal,
+                        mapType: MapType.hybrid,
                         myLocationEnabled: true,
                         initialCameraPosition: CameraPosition(
                           target: LatLng(
@@ -72,7 +72,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
                           color: Colors.white,
                         ),
                         child: TextField(
-                          controller: txt,
+                          controller: _txt,
                           decoration: InputDecoration(
                             hintText: 'Enter Address',
                             border: InputBorder.none,
@@ -88,7 +88,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
                           ),
                           onChanged: (val) {
                             setState(() {
-                              searchAddr = val;
+                              _searchAddr = val;
                             });
                           },
                         ),
@@ -103,7 +103,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
 
   void onMapCreated(controller) {
     setState(() {
-      mapController = controller;
+      _mapController = controller;
     });
   }
 
@@ -119,8 +119,9 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
   }
 
   searchNavigate() {
-    locationFromAddress(searchAddr).then((result) {
-      mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+    locationFromAddress(_searchAddr).then((result) {
+      _mapController
+          .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: LatLng(result[0].latitude, result[0].longitude),
         zoom: getZoomLevel(25),
       )));
@@ -136,7 +137,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
           await Geocoder.local.findAddressesFromCoordinates(coordinates);
       print("Address: ${addresses.first.addressLine}");
       setState(() {
-        txt.text = addresses.first.addressLine;
+        _txt.text = addresses.first.addressLine;
       });
     }
 

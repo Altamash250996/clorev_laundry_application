@@ -3,16 +3,16 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:clover_application/screens/service_provider_bookings.dart';
-import 'package:clover_application/widgets/camera_access.dart';
-import 'package:clover_application/widgets/geo_location/geo_location_screen.dart';
+import 'package:clover_application/screens/service_provider_screens/service_provider_bookings.dart';
+import 'package:clover_application/widgets/service_provider_widgets/camera_access.dart';
+import '../../widgets/service_provider_widgets/geo_location/geo_location_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'bottom_navigation_bar.dart';
-import 'user_screens/user_bottom_navigation_bar.dart';
+import '../user_screens/user_bottom_navigation_bar.dart';
 
 class ServiceProviderLogin extends StatefulWidget {
   @override
@@ -189,7 +189,7 @@ class _ServiceProviderLoginState extends State<ServiceProviderLogin> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyBottomNavBar(),
+                              builder: (context) => UserBottomNavBar(),
                             ),
                           );
                         },
@@ -732,11 +732,37 @@ class _ServiceProviderLoginState extends State<ServiceProviderLogin> {
                       //
                       //
                       //
-                      Container(
-                        alignment: Alignment.center,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('Submit'),
+                      SizedBox(height: 10),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 30.0,
+                            left: 30.0,
+                          ),
+                          child: Container(
+                            width: double.infinity,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.blue),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../profile_page.dart';
+import '../service_provider_screens/profile_page.dart';
 import 'user_add_cart_screen.dart';
 import 'user_home_screen.dart';
 import 'user_notification_screen.dart';

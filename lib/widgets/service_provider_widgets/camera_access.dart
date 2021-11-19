@@ -18,6 +18,7 @@ class _CameraGalleryAccessState extends State<CameraGalleryAccess> {
     setState(() {
       _imageCamera = File(image.path);
     });
+    print(_imageCamera);
   }
 
   Future getGalleryImage() async {
@@ -25,6 +26,7 @@ class _CameraGalleryAccessState extends State<CameraGalleryAccess> {
     setState(() {
       _imageGallery = File(image.path);
     });
+    print(_imageGallery);
   }
 
   @override

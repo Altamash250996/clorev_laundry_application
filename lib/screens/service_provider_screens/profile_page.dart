@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
-import 'package:clover_application/screens/bank_details.dart';
-import 'package:clover_application/screens/business_information.dart';
-import 'package:clover_application/screens/edit_profile.dart';
-import 'package:clover_application/screens/ledger_account_page.dart';
-import 'package:clover_application/screens/setting_page.dart';
+import 'package:clover_application/screens/service_provider_screens/bank_details.dart';
+import 'package:clover_application/screens/service_provider_screens/business_information.dart';
+import 'package:clover_application/screens/service_provider_screens/edit_profile.dart';
+import 'package:clover_application/screens/service_provider_screens/ledger_account_page.dart';
+import 'package:clover_application/screens/service_provider_screens/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -483,7 +483,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             //setting page
                             InkWell(
                               focusColor: Colors.white70,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SettingsPage(),
+                                  ),
+                                );
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -510,7 +517,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           child: Row(
                                             children: [
                                               const Text(
-                                                'Refer App',
+                                                'Settings',
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 
-import 'package:clover_application/widgets/active_bookings.dart';
-import 'package:clover_application/widgets/closed_bookings.dart';
+import 'package:clover_application/widgets/service_provider_widgets/active_bookings.dart';
+import 'package:clover_application/widgets/service_provider_widgets/closed_bookings.dart';
 import 'package:flutter/material.dart';
 
 class ServiceProviderBookings extends StatelessWidget {

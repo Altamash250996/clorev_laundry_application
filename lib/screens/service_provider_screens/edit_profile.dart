@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
-import 'package:clover_application/screens/business_information.dart';
+import 'package:clover_application/screens/service_provider_screens/business_information.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatelessWidget {

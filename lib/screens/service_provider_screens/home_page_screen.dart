@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_brace_in_string_interps, use_key_in_widget_constructors, prefer_final_fields, unnecessary_string_interpolations, avoid_print
 
+import 'package:clover_application/screens/user_screens/cart/user_booking_summary.dart';
+import 'package:clover_application/screens/user_screens/user_add_location_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'service_provider_login.dart';
-import 'user_screens/user_bottom_navigation_bar.dart';
+import '../user_screens/user_bottom_navigation_bar.dart';
 
 class HomePageScreen extends StatefulWidget {
   @override
@@ -39,8 +41,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
             .signInWithCredential(credential)
             .then((value) {
           if (value.user != null) {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (c) => UserBottomNavBar()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (c) => UserAddLocationScreen()));
           }
         });
       },
@@ -181,7 +183,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 print('Click me');
-                                verifyPhoneNumber();
+                                //verifyPhoneNumber();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UserBookingSummary(),
+                                  ),
+                                );
                               },
                               child: Text(
                                 'Request OTP',
@@ -237,9 +245,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                         if (value.user != null)
                                           {
                                             Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (c) =>
-                                                        UserBottomNavBar()))
+                                              MaterialPageRoute(
+                                                builder: (c) =>
+                                                    UserAddLocationScreen(),
+                                              ),
+                                            ),
                                           }
                                       });
                             } catch (e) {
