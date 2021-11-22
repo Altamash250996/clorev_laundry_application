@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_brace_in_string_interps, use_key_in_widget_constructors, prefer_final_fields, unnecessary_string_interpolations, avoid_print
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_brace_in_string_interps, use_key_in_widget_constructors, prefer_final_fields, unnecessary_string_interpolations, avoid_print, sized_box_for_whitespace
 
+import 'package:clover_application/screens/delivery_partner_screens/delivery_page.dart';
 import 'package:clover_application/screens/user_screens/cart/user_booking_summary.dart';
 import 'package:clover_application/screens/user_screens/user_add_location_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,6 +17,7 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
+  bool isRequestButtonActive = false;
   bool value = false;
   String dialCodeDigits = '+91';
   TextEditingController _controller = TextEditingController();
@@ -25,12 +27,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
   String verificationCode;
 
   final BoxDecoration pinOTPCodeDecoration = BoxDecoration(
-    color: Colors.blueAccent,
+    color: Colors.transparent,
     borderRadius: BorderRadius.circular(10.0),
     border: Border.all(
       color: Colors.grey,
     ),
   );
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+    _controller.addListener(() {
+      final isRequestButtonActive = _controller.text.isNotEmpty;
+      setState(() {
+        this.isRequestButtonActive = isRequestButtonActive;
+      });
+    });
+  }
 
   void verifyPhoneNumber() async {
     print('Click !!!');
@@ -82,288 +96,300 @@ class _HomePageScreenState extends State<HomePageScreen> {
         backgroundColor: Colors.transparent,
         key: _scaffolkey,
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 75,
-              ),
-              FlutterLogo(
-                size: 200,
-              ),
-              SizedBox(
-                height: 75,
-              ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 60,
-                            width: 120,
-                            child: CountryCodePicker(
-                              onChanged: (country) {
-                                setState(() {
-                                  dialCodeDigits = country.dialCode;
-                                });
-                              },
-                              initialSelection: 'IN',
-                              showCountryOnly: false,
-                              showOnlyCountryWhenClosed: false,
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              margin:
-                                  EdgeInsets.only(top: 10, right: 10, left: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white),
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white,
-                              ),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'Phone Number',
-                                  prefix: Padding(
-                                    padding: EdgeInsets.all(4),
-                                    child: Text(dialCodeDigits),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                                maxLength: 12,
-                                keyboardType: TextInputType.number,
-                                controller: _controller,
-                                onChanged: (_) {
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: this.value,
-                            onChanged: (bool value) {
-                              setState(() {
-                                this.value = value;
-                              });
-                            },
-                          ),
-                          Flexible(
-                            child: Text(
-                              'I  have  read and do hereby agree to the Terms of Use and Privacy Policy of CLORVE Laundry.',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            width: 200,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                print('Click me');
-                                //verifyPhoneNumber();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UserBookingSummary(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                'Request OTP',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 20),
-                        child: Center(
-                          child: GestureDetector(
-                            /* onTap: () {
-                              verifyPhoneNumber();
-                            }, */
-                            child: Text(
-                              'Verifying : ${dialCodeDigits}-${_controller.text}',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: PinPut(
-                          fieldsCount: 6,
-                          textStyle: TextStyle(
-                            fontSize: 25,
-                            color: Colors.white,
-                          ),
-                          eachFieldWidth: 40.0,
-                          focusNode: _pinOTPCodeFocus,
-                          controller: _pinOTPCodeController,
-                          submittedFieldDecoration: pinOTPCodeDecoration,
-                          selectedFieldDecoration: pinOTPCodeDecoration,
-                          followingFieldDecoration: pinOTPCodeDecoration,
-                          pinAnimationType: PinAnimationType.rotation,
-                          onSubmit: (pin) async {
-                            try {
-                              await FirebaseAuth.instance
-                                  .signInWithCredential(
-                                      PhoneAuthProvider.credential(
-                                          verificationId: verificationCode,
-                                          smsCode: pin))
-                                  .then((value) => {
-                                        if (value.user != null)
-                                          {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (c) =>
-                                                    UserAddLocationScreen(),
-                                              ),
-                                            ),
-                                          }
-                                      });
-                            } catch (e) {
-                              FocusScope.of(context).unfocus();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Invalid OTP'),
-                                  duration: Duration(seconds: 3),
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                      /* Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            width: 200,
-                            height: 50,
-                            child: ElevatedButton.icon(
-                              icon: Icon(Icons.login),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MyBottomNavBar(),
-                                  ),
-                                );
-                              },
-                              label: Text(
-                                'Login',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ), */
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            height: 45,
-                            child: TextButton.icon(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        ServiceProviderLogin(),
-                                  ),
-                                );
-                              },
-                              label: Text(
-                                'Service Provider',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              style: TextButton.styleFrom(
-                                primary: Colors.black,
-                              ),
-                              icon: Icon(
-                                Icons.keyboard_arrow_right_outlined,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 4,
-                            child: Text(
-                              '|',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 45,
-                            child: TextButton.icon(
-                              onPressed: () {
-                                print('Click me');
-                              },
-                              label: Text(
-                                'Delivery Partner',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              icon: Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.blue,
-                              ),
-                              style: TextButton.styleFrom(
-                                primary: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Container(
+                  height: 350,
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/images/clorev_works.jpg',
+                    fit: BoxFit.fill,
                   ),
                 ),
-              ),
-            ],
+                Card(
+                  elevation: 18,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 60,
+                              width: 120,
+                              child: CountryCodePicker(
+                                onChanged: (country) {
+                                  setState(() {
+                                    dialCodeDigits = country.dialCode;
+                                  });
+                                },
+                                initialSelection: 'IN',
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    top: 10, right: 10, left: 10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Colors.white,
+                                ),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Phone Number',
+                                    prefix: Padding(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(dialCodeDigits),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  maxLength: 12,
+                                  keyboardType: TextInputType.number,
+                                  controller: _controller,
+                                  onChanged: (_) {
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: this.value,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  this.value = value;
+                                });
+                              },
+                            ),
+                            Flexible(
+                              child: Text(
+                                'I  have  read and do hereby agree to the Terms of Use and Privacy Policy of CLORVE Laundry.',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              height: 50,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  onSurface: Colors.blueAccent,
+                                ),
+                                onPressed: isRequestButtonActive
+                                    ? () {
+                                        setState(() =>
+                                            isRequestButtonActive = false);
+                                        verifyPhoneNumber();
+                                      }
+                                    : null,
+                                child: Text(
+                                  'Request OTP',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        // Container(
+                        //   margin: EdgeInsets.only(top: 20),
+                        //   child: Center(
+                        //     child: GestureDetector(
+                        //       /* onTap: () {
+                        //         verifyPhoneNumber();
+                        //       }, */
+                        //       child: Text(
+                        //         'Verifying : ${dialCodeDigits}-${_controller.text}',
+                        //         style: TextStyle(
+                        //           fontWeight: FontWeight.bold,
+                        //           fontSize: 16,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: PinPut(
+                            fieldsCount: 4,
+                            textStyle: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white,
+                            ),
+                            eachFieldWidth: 40.0,
+                            focusNode: _pinOTPCodeFocus,
+                            controller: _pinOTPCodeController,
+                            submittedFieldDecoration: pinOTPCodeDecoration,
+                            selectedFieldDecoration: pinOTPCodeDecoration,
+                            followingFieldDecoration: pinOTPCodeDecoration,
+                            pinAnimationType: PinAnimationType.rotation,
+                            onSubmit: (pin) async {
+                              try {
+                                await FirebaseAuth.instance
+                                    .signInWithCredential(
+                                        PhoneAuthProvider.credential(
+                                            verificationId: verificationCode,
+                                            smsCode: pin))
+                                    .then((value) => {
+                                          if (value.user != null)
+                                            {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (c) =>
+                                                      UserAddLocationScreen(),
+                                                ),
+                                              ),
+                                            }
+                                        });
+                              } catch (e) {
+                                FocusScope.of(context).unfocus();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Invalid OTP'),
+                                    duration: Duration(seconds: 3),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              height: 50,
+                              child: ElevatedButton.icon(
+                                icon: Icon(Icons.login),
+                                onPressed: () {
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => MyBottomNavBar(),
+                                  //   ),
+                                  // );
+                                },
+                                label: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              height: 45,
+                              child: TextButton.icon(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ServiceProviderLogin(),
+                                    ),
+                                  );
+                                },
+                                label: Text(
+                                  'Service Provider',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                style: TextButton.styleFrom(
+                                  primary: Colors.black,
+                                ),
+                                icon: Icon(
+                                  Icons.keyboard_arrow_right_outlined,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 4,
+                              child: Text(
+                                '|',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 45,
+                              child: TextButton.icon(
+                                onPressed: () {
+                                  print('Click me');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DeliveryPage(),
+                                    ),
+                                  );
+                                },
+                                label: Text(
+                                  'Delivery Partner',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                icon: Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: Colors.blue,
+                                ),
+                                style: TextButton.styleFrom(
+                                  primary: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

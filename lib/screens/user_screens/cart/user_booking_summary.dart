@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, unnecessary_new, prefer_final_fields, override_on_non_overriding_member
 
+import 'package:clover_application/screens/user_screens/cart/confirm_pickup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
@@ -28,86 +29,6 @@ class _UserBookingSummaryState extends State<UserBookingSummary> {
       _value -= 1;
       print(_value.toString());
     });
-  }
-
-  Widget _buildPopupDialog(BuildContext context) {
-    return AlertDialog(
-      title: Icon(
-        Icons.warning_rounded,
-        color: Colors.blue,
-        size: 80,
-      ),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          new RichText(
-            text: new TextSpan(
-              style: new TextStyle(
-                fontSize: 14.0,
-                color: Colors.black,
-              ),
-              children: <TextSpan>[
-                new TextSpan(text: 'Are you sure, you want to remove'),
-                new TextSpan(
-                  text: '\nItem Name ',
-                  style: new TextStyle(fontWeight: FontWeight.bold),
-                ),
-                new TextSpan(text: 'from cart...?'),
-              ],
-            ),
-          ),
-        ],
-      ),
-      actions: <Widget>[
-        Center(
-          child: ToggleButtons(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 35,
-                ),
-                child: Text(
-                  'Remove',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 35,
-                ),
-                child: Text(
-                  'Keep',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-            isSelected: isSelected,
-            fillColor: Colors.blue,
-            color: Colors.black,
-            selectedColor: Colors.white,
-            borderColor: Colors.blue,
-            onPressed: (int newIndex) {
-              setState(() {
-                for (int index = 0; index < isSelected.length; index++) {
-                  if (index == newIndex) {
-                    isSelected[index] = true;
-                  } else {
-                    isSelected[index] = false;
-                  }
-                }
-              });
-            },
-          ),
-        ),
-      ],
-    );
   }
 
   Widget build(BuildContext context) {
@@ -554,13 +475,7 @@ class _UserBookingSummaryState extends State<UserBookingSummary> {
                                               ),
                                               onPressed: () {
                                                 _removeItems();
-                                                showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          _buildPopupDialog(
-                                                              context),
-                                                );
+                                                openDialog();
                                               },
                                               tooltip: 'Remove',
                                             ),
@@ -817,9 +732,13 @@ class _UserBookingSummaryState extends State<UserBookingSummary> {
                                           Colors.blue),
                                 ),
                                 onPressed: () {
-                                  //
-                                  //
-                                  //
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ConfirmPickupScreen(),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   "RAISED PICK-UP CALL",
@@ -843,4 +762,88 @@ class _UserBookingSummaryState extends State<UserBookingSummary> {
       ),
     );
   }
+
+  //Alert Dailog Box
+  Future openDialog() => showDialog(
+        context: context,
+        builder: (context) => StatefulBuilder(
+          builder: (contex, setState) => AlertDialog(
+            title: Icon(
+              Icons.warning_rounded,
+              color: Colors.blue,
+              size: 80,
+            ),
+            content: new Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new RichText(
+                  text: new TextSpan(
+                    style: new TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black,
+                    ),
+                    children: <TextSpan>[
+                      new TextSpan(text: 'Are you sure, you want to remove'),
+                      new TextSpan(
+                        text: '\nItem Name ',
+                        style: new TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      new TextSpan(text: 'from cart...?'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              Center(
+                child: ToggleButtons(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 35,
+                      ),
+                      child: Text(
+                        'Remove',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 35,
+                      ),
+                      child: Text(
+                        'Keep',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                  isSelected: isSelected,
+                  fillColor: Colors.blue,
+                  color: Colors.black,
+                  selectedColor: Colors.white,
+                  borderColor: Colors.blue,
+                  onPressed: (int newIndex) {
+                    setState(() {
+                      for (int index = 0; index < isSelected.length; index++) {
+                        if (index == newIndex) {
+                          isSelected[index] = true;
+                        } else {
+                          isSelected[index] = false;
+                        }
+                      }
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
 }

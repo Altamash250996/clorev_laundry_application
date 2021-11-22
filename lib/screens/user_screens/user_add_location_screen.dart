@@ -3,7 +3,7 @@
 import 'dart:math';
 
 import 'package:clover_application/blocs/application_bloc.dart';
-import 'package:clover_application/screens/user_screens/user_bottom_navigation_bar.dart';
+import 'package:clover_application/screens/user_screens/user/user_home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +11,6 @@ import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:geocoding/geocoding.dart';
-
-import 'cart/user_booking_summary.dart';
 
 class UserAddLocationScreen extends StatefulWidget {
   //const UserAddLocationScreen({ Key? key }) : super(key: key);
@@ -254,7 +252,7 @@ class _UserAddLocationScreenState extends State<UserAddLocationScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => UserBookingSummary(),
+                                builder: (context) => UserHomePage(),
                               ),
                             );
                           },
