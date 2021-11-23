@@ -10,6 +10,9 @@ import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:uuid/uuid.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class GeoLocationScreen extends StatefulWidget {
   @override
@@ -21,6 +24,48 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
   GoogleMapController _mapController;
   String _searchAddr;
   var _txt = TextEditingController();
+
+  var uuid = new Uuid();
+  String _sessionToken;
+  List<dynamic> _placeList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _txt.addListener(() {
+      _onChanged();
+    });
+  }
+
+  _onChanged() {
+    if (_sessionToken == null) {
+      setState(() {
+        _sessionToken = uuid.v4();
+      });
+    }
+    getSuggestion(_txt.text);
+  }
+
+  void getSuggestion(String input) async {
+    print('Click!!!!!!!!!!!!!!!!!!!!!!!');
+    String kPLACES_API_KEY = "AIzaSyCHczd9XZNbtb-b9UAXT7CB2soK3mBPJr4";
+    String type = '(regions)';
+    String baseURL =
+        'https://maps.googleapis.com/maps/api/place/autocomplete/json';
+    String request =
+        '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$_sessionToken';
+
+    var response = await http.get(Uri.parse(request));
+
+    if (response.statusCode == 200) {
+      setState(() {
+        _placeList = json.decode(response.body)['predictions'];
+        print(_placeList);
+      });
+    } else {
+      throw Exception('Failed to load predictions');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +84,7 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
                       height: 300,
                       child: GoogleMap(
                         onMapCreated: onMapCreated,
-                        mapType: MapType.hybrid,
+                        mapType: MapType.normal,
                         myLocationEnabled: true,
                         initialCameraPosition: CameraPosition(
                           target: LatLng(
@@ -71,26 +116,44 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
                           borderRadius: BorderRadius.circular(10.0),
                           color: Colors.white,
                         ),
-                        child: TextField(
-                          controller: _txt,
-                          decoration: InputDecoration(
-                            hintText: 'Enter Address',
-                            border: InputBorder.none,
-                            contentPadding:
-                                EdgeInsets.only(left: 15.0, top: 15.0),
-                            suffixIcon: IconButton(
-                              onPressed: searchNavigate,
-                              icon: Icon(
-                                Icons.search,
+                        child: Column(
+                          children: [
+                            TextField(
+                              controller: _txt,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.map,
+                                  color: Colors.blue,
+                                ),
+                                hintText: 'Enter Address',
+                                border: InputBorder.none,
+                                contentPadding:
+                                    EdgeInsets.only(left: 15.0, top: 15.0),
+                                suffixIcon: IconButton(
+                                  onPressed: searchNavigate,
+                                  icon: Icon(
+                                    Icons.search,
+                                  ),
+                                  iconSize: 30.0,
+                                ),
                               ),
-                              iconSize: 30.0,
+                              onChanged: (val) {
+                                setState(() {
+                                  _searchAddr = val;
+                                });
+                              },
                             ),
-                          ),
-                          onChanged: (val) {
-                            setState(() {
-                              _searchAddr = val;
-                            });
-                          },
+                            ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: _placeList.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text(_placeList[index]["description"]),
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -136,6 +199,11 @@ class _GeoLocationScreenState extends State<GeoLocationScreen> {
       var addresses =
           await Geocoder.local.findAddressesFromCoordinates(coordinates);
       print("Address: ${addresses.first.addressLine}");
+      _mapController
+          .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+        target: LatLng(tappedPoint.latitude, tappedPoint.longitude),
+        zoom: getZoomLevel(25),
+      )));
       setState(() {
         _txt.text = addresses.first.addressLine;
       });

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:math';
-
 import 'package:clover_application/blocs/application_bloc.dart';
 import 'package:clover_application/screens/user_screens/user/user_home_page.dart';
 import 'package:flutter/foundation.dart';
@@ -11,6 +10,9 @@ import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:uuid/uuid.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class UserAddLocationScreen extends StatefulWidget {
   //const UserAddLocationScreen({ Key? key }) : super(key: key);
@@ -33,6 +35,48 @@ class _UserAddLocationScreenState extends State<UserAddLocationScreen> {
   String _searchAddr;
   var _txt = TextEditingController();
 
+  var uuid = new Uuid();
+  String _sessionToken;
+  List<dynamic> _placeList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _txt.addListener(() {
+      _onChanged();
+    });
+  }
+
+  _onChanged() {
+    if (_sessionToken == null) {
+      setState(() {
+        _sessionToken = uuid.v4();
+      });
+    }
+    getSuggestion(_txt.text);
+  }
+
+  void getSuggestion(String input) async {
+    print('Click!!!!!!!!!!!!!!!!!!!!!!!');
+    String kPLACES_API_KEY = "AIzaSyCHczd9XZNbtb-b9UAXT7CB2soK3mBPJr4";
+    String type = '(regions)';
+    String baseURL =
+        'https://maps.googleapis.com/maps/api/place/autocomplete/json';
+    String request =
+        '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$_sessionToken';
+
+    var response = await http.get(Uri.parse(request));
+
+    if (response.statusCode == 200) {
+      setState(() {
+        _placeList = json.decode(response.body)['predictions'];
+        print(_placeList);
+      });
+    } else {
+      throw Exception('Failed to load predictions');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final applicationBloc = Provider.of<ApplicationBloc>(context);
@@ -46,10 +90,10 @@ class _UserAddLocationScreenState extends State<UserAddLocationScreen> {
                     child: CircularProgressIndicator(),
                   )
                 : Container(
-                    height: 550,
+                    height: 500,
                     child: GoogleMap(
                       onMapCreated: onMapCreated,
-                      mapType: MapType.hybrid,
+                      mapType: MapType.normal,
                       myLocationEnabled: true,
                       initialCameraPosition: CameraPosition(
                         target: LatLng(
@@ -77,29 +121,42 @@ class _UserAddLocationScreenState extends State<UserAddLocationScreen> {
             //Select the Address
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: TextField(
-                  controller: _txt,
-                  decoration: InputDecoration(
-                    hintText: 'Enter Address',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
-                    suffixIcon: IconButton(
-                      onPressed: searchNavigate,
-                      icon: Icon(
-                        Icons.search,
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _txt,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.map),
+                      hintText: 'Enter Address',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      iconSize: 30.0,
+                      contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
+                      suffixIcon: IconButton(
+                        onPressed: searchNavigate,
+                        icon: Icon(
+                          Icons.search,
+                        ),
+                        iconSize: 30.0,
+                      ),
                     ),
+                    onChanged: (val) {
+                      setState(() {
+                        _searchAddr = val;
+                      });
+                    },
                   ),
-                  onChanged: (val) {
-                    setState(() {
-                      _searchAddr = val;
-                    });
-                  },
-                ),
+                  ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: _placeList.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(_placeList[index]["description"]),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -311,6 +368,11 @@ class _UserAddLocationScreenState extends State<UserAddLocationScreen> {
       var addresses =
           await Geocoder.local.findAddressesFromCoordinates(coordinates);
       print("Address: ${addresses.first.addressLine}");
+      _mapController
+          .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+        target: LatLng(tappedPoint.latitude, tappedPoint.longitude),
+        zoom: getZoomLevel(25),
+      )));
       setState(() {
         _txt.text = addresses.first.addressLine;
       });
