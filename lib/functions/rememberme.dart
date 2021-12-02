@@ -18,25 +18,23 @@ class _RememberMeState extends State<RememberMe> {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.blue;
     }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          child: Checkbox(
-            checkColor: Colors.white,
-            fillColor: MaterialStateProperty.resolveWith(getColor),
-            value: isChecked,
-            onChanged: (bool value) {
-              setState(() {
-                isChecked = value;
-              });
-            },
-          ),
+        Checkbox(
+          checkColor: Colors.white,
+          fillColor: MaterialStateProperty.resolveWith(getColor),
+          value: isChecked,
+          onChanged: (bool value) {
+            setState(() {
+              isChecked = value;
+            });
+          },
         ),
-        FittedBox(
+        const FittedBox(
           fit: BoxFit.fitWidth,
           child: Text(
             "Remember Me",

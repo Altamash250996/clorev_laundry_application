@@ -385,20 +385,22 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                       onSurface: Colors.blueAccent,
                                     ),
                                     icon: Icon(Icons.login),
-                                    onPressed: isLoginButtonActive
-                                        ? () {
-                                            setState(
-                                              () => isLoginButtonActive = false,
-                                            );
-                                          }
-                                        : null,
+
                                     label: Text(
                                       'Login',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
                                       ),
-                                    ),
+                                    ), onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UserBottomNavBar(),
+                                      ),
+                                    );
+                                  },
                                   ),
                                 ),
                               ],
