@@ -1,5 +1,5 @@
 import 'package:clover_application/models/closed_bookings.dart';
-import 'package:demo_app/profilepages/editprofile.dart';
+import 'package:clover_application/screens/delivery_partner_screens/profilepages/editprofile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

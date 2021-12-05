@@ -1,4 +1,4 @@
-import 'package:demo_app/functions/dropdowns.dart';
+import 'package:clover_application/functions/dropdowns.dart';
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatefulWidget {

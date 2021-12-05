@@ -1,8 +1,8 @@
-import 'package:demo_app/profilepages/bankdetails.dart';
-import 'package:demo_app/profilepages/editprofile.dart';
-import 'package:demo_app/profilepages/ledgeraccount.dart';
-import 'package:demo_app/profilepages/professionaldetails.dart';
-import 'package:demo_app/profilepages/settings.dart';
+import 'package:clover_application/screens/delivery_partner_screens/profilepages/bankdetails.dart';
+import 'package:clover_application/screens/delivery_partner_screens/profilepages/editprofile.dart';
+import 'package:clover_application/screens/delivery_partner_screens/profilepages/ledgeraccount.dart';
+import 'package:clover_application/screens/delivery_partner_screens/profilepages/professionaldetails.dart';
+import 'package:clover_application/screens/delivery_partner_screens/profilepages/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
