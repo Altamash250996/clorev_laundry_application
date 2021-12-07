@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UserHomePage extends StatefulWidget {
+  const UserHomePage({Key key}) : super(key: key);
+
   @override
   State<UserHomePage> createState() => _UserHomePageState();
 }
