@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:clover_application/screens/user_screens/user_add_cart_screen.dart';
 import 'package:flutter/material.dart';
 
 class UserHomeScreen extends StatelessWidget {
@@ -131,7 +132,14 @@ class UserHomeScreen extends StatelessWidget {
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   Colors.transparent),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => UserAddToCart(),
+                                ),
+                              );
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: Text(
@@ -259,15 +267,16 @@ class UserHomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: const [
+                              Color.fromRGBO(0 , 113, 143, 1),
+                              Color.fromRGBO(56, 197, 243, 1),
+
+                            ]
+                          ),
                           borderRadius: BorderRadius.circular(10.0),
-                          color: Color.fromRGBO(0, 200, 255, 1),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 4,
-                              offset: Offset(1, 4), // Shadow position
-                            ),
-                          ],
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -342,7 +351,8 @@ class UserHomeScreen extends StatelessWidget {
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
                                   'CRL-017 (DEL)',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Padding(
@@ -467,7 +477,8 @@ class UserHomeScreen extends StatelessWidget {
                               color: Colors.grey,
                               blurRadius: 5.0,
                             ),
-                          ],),
+                          ],
+                        ),
                       ),
                     ),
                   ],
