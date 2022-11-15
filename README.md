@@ -1,6 +1,6 @@
 # clover_application
 
-A new Flutter project.
+Clorev Laundry is a multi-platform app for iOS and Android which comes with a lot of features to help service providers and delivery partners to manage their business and provide a quality of service to the users.
 
 ## Getting Started
 
