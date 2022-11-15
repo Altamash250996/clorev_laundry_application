@@ -4,7 +4,7 @@ Clorev Laundry is a multi-platform app for iOS and Android which comes with a lo
 
 ## Internship Certificate
   Certificate Number: D09DDBBA-4619-923E-1EFB-90E5C75BBAB5
-- [DigiChum Skill Hub Certificate](https://internshala.com/verify_certificate)
+- [For certificate authentication please](https://internshala.com/verify_certificate)
 
 ## Getting Started
 
