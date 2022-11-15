@@ -2,6 +2,9 @@
 
 Clorev Laundry is a multi-platform app for iOS and Android which comes with a lot of features to help service providers and delivery partners to manage their business and provide a quality of service to the users.
 
+## Internship Certificate
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
